@@ -5,15 +5,17 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import configureStore from './store';
-import csrfFetch from './store/crsf';
-import { restoreCSRF } from './store/crsf';
+import csrfFetch from './store/csrf';
+import { restoreCSRF } from './store/csrf';
+import * as sessionActions from './store/session';
 
-const store = configureStore();
+export const store = configureStore();
 
-// if (process.env.NODE_ENV !== 'production') {
-  window.store = store;
+if (process.env.NODE_ENV !== 'production') {
   window.csrfFetch = csrfFetch;
-// }
+  window.sessionActions = sessionActions;
+  window.store = store
+}
 
 const renderApplication = () => {
   ReactDOM.render(
