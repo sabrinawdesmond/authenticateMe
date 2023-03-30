@@ -20,10 +20,9 @@ function LoginFormPage() {
       .catch(async (res) => {
         let data;
         try {
-          // .clone() essentially allows you to read the response body twice
           data = await res.clone().json();
         } catch {
-          data = await res.text(); // Will hit this case if the server is down
+          data = await res.text(); 
         }
         if (data?.errors) setErrors(data.errors);
         else if (data) setErrors([data]);
@@ -38,6 +37,7 @@ function LoginFormPage() {
       </ul>
       <label>
         Username or Email
+        <p/>
         <input
           type="text"
           value={credential}
@@ -45,8 +45,10 @@ function LoginFormPage() {
           required
         />
       </label>
+      <p/>
       <label>
         Password
+        <p/>
         <input
           type="password"
           value={password}
@@ -54,6 +56,7 @@ function LoginFormPage() {
           required
         />
       </label>
+      <p/>
       <button type="submit">Log In</button>
     </form>
   );
